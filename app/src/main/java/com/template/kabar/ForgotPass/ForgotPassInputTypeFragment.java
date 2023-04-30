@@ -1,6 +1,5 @@
 package com.template.kabar.ForgotPass;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,12 +15,6 @@ import com.template.kabar.R;
 import java.util.Objects;
 
 public class ForgotPassInputTypeFragment extends Fragment {
-    Context context;
-
-    public ForgotPassInputTypeFragment(Context context) {
-        this.context = context;
-    }
-
     RadioButton currentCheckedRadioButton;
 
     @Override
@@ -32,8 +25,8 @@ public class ForgotPassInputTypeFragment extends Fragment {
         RadioButton mailRadio = view.findViewById(R.id.mailRadio);
         RadioButton smsRadio = view.findViewById(R.id.phoneRadio);
         ForgotPasswordActivity activity = (ForgotPasswordActivity) getActivity();
-        Button btn = Objects.requireNonNull(activity).getSubmitButton();
 
+        Button submitButton = Objects.requireNonNull(activity).getSubmitButton();
         mailRadio.setOnClickListener(v -> {
 
             if (currentCheckedRadioButton != null) {
@@ -43,8 +36,8 @@ public class ForgotPassInputTypeFragment extends Fragment {
             mailRadio.setChecked(true);
             currentCheckedRadioButton = mailRadio;
 
-            btn.setBackgroundResource(R.drawable.primary_button_design);
-
+            submitButton.setBackgroundResource(R.drawable.primary_button_design);
+            submitButton.setClickable(true);
         });
 
         smsRadio.setOnClickListener(v -> {
@@ -52,14 +45,16 @@ public class ForgotPassInputTypeFragment extends Fragment {
             if (currentCheckedRadioButton != null) {
                 currentCheckedRadioButton.setChecked(false);
             }
-            btn.setBackgroundResource(R.drawable.primary_button_design);
+            submitButton.setBackgroundResource(R.drawable.primary_button_design);
+            submitButton.setClickable(true);
 
             smsRadio.setChecked(true);
             currentCheckedRadioButton = smsRadio;
         });
 
         if( !( mailRadio.isChecked() || smsRadio.isChecked())){
-            btn.setBackgroundResource(R.drawable.disabled_button_design);
+            submitButton.setBackgroundResource(R.drawable.disabled_button_design);
+            submitButton.setClickable(false);
         }
         return view;
     }

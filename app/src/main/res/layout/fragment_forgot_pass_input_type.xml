@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:text="Don’t worry! it happens. Please select the\nemail or number associated with your\naccount."
-            android:textColor="@color/body_text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="16sp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
