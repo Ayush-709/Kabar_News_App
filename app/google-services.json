@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "121811552599",
+    "project_id": "kabar-news-app",
+    "storage_bucket": "kabar-news-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121811552599:android:b752bfc27d6716712c5612",
+        "android_client_info": {
+          "package_name": "com.template.kabar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121811552599-fh4sl0hkqu63grlslh0l7k71ako8qagk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWHiil3t1rsVXXvGJDlw8FXaSp17o3yts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121811552599-fh4sl0hkqu63grlslh0l7k71ako8qagk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

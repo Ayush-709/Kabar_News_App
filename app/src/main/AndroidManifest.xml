@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Kabar"
         tools:targetApi="31">
         <activity
+            android:name=".SignupScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginScreenActivity"
             android:exported="false" />
         <activity

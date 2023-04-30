@@ -8,6 +8,13 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowLightStatusBar">false</item>
 
+
+        <item name="android:colorPrimary" tools:targetApi="n_mr1">@color/darkModeInput</item>
+        <item name="android:colorSecondary" tools:targetApi="n_mr1">@color/darkModeInput</item>
+        <item name="android:textColorPrimary">@color/darkModeBody</item>
+
+        <item name="textAllCaps">false</item>
+
         <item name="android:textColor">?android:textColorPrimaryNoDisable</item>
     </style>
 
