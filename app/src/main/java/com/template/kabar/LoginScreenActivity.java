@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.template.kabar.ForgotPass.ForgotPasswordActivity;
 
 public class LoginScreenActivity extends AppCompatActivity {
     TextView signUpLink, forgotPassLink;
@@ -34,6 +35,10 @@ public class LoginScreenActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        forgotPassLink.setOnClickListener(v->{
+            Intent intent = new Intent(LoginScreenActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void setTextColor(){

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:ignore="HardcodedText"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ThirdInfoFragment">
+    tools:context=".InfoWindow.ThirdInfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

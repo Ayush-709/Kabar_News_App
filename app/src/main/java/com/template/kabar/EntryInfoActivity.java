@@ -2,7 +2,6 @@ package com.template.kabar;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,11 +10,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.template.kabar.InfoWindow.FirstInfoFragment;
+import com.template.kabar.InfoWindow.SecondInfoFragment;
+import com.template.kabar.InfoWindow.ThirdInfoFragment;
 
 public class EntryInfoActivity extends AppCompatActivity {
     Button backButton, nextButton;

@@ -1,4 +1,4 @@
-package com.template.kabar;
+package com.template.kabar.InfoWindow;
 
 import android.os.Bundle;
 
@@ -7,16 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-public class FirstInfoFragment extends Fragment {
-    View view;
+import com.template.kabar.R;
+
+public class ThirdInfoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_first_info, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_third_info, container, false);
     }
 }

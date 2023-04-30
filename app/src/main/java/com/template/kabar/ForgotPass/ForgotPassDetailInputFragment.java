@@ -1,4 +1,4 @@
-package com.template.kabar;
+package com.template.kabar.ForgotPass;
 
 import android.os.Bundle;
 
@@ -8,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SecondInfoFragment extends Fragment {
+import com.template.kabar.R;
 
-    View view;
+public class ForgotPassDetailInputFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_second_info, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_forgot_pass_detail_input, container, false);
     }
 }
