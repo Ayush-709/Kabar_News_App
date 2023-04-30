@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#050505</color>
+    <color name="white">#ffffff</color>
+    <color name="body_text">#4E4B66</color>
+    <color name="button_text">#667080</color>
+    <color name="placeholder">#A0A3BD</color>
+    <color name="button">#EEF1F4</color>
+    <color name="disabled_input">#EEF1F4</color>
+    <color name="bluePrimary">#1877F2</color>
+
+    <color name="darkPinkError">#C30052</color>
+    <color name="pinkDarkMode">#FF84B7</color>
+    <color name="defaultPinkError">#FF84B7</color>
+
+    <color name="darkGreenSuccess">#00966D</color>
+    <color name="greenDarkMode">#00BA88</color>
+    <color name="defaultGreenSuccess">#34EAB9</color>
+
+    <color name="darkYellowWarning">#946200</color>
+    <color name="yellowDarkMode">#FFD789</color>
+    <color name="defaultYellowWarning">#F4B740</color>
+    <color name="darkModeBackground">#1C1E21</color>
+    <color name="darkModeInput">#3A3B3C</color>
+    <color name="darkModeBody">#B0B3B8</color>
+    <color name="darkModeTitle">#E4E6EB</color>
+
+</resources>
