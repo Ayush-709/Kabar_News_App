@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardcodedText"
-    tools:context=".SignupScreenActivity">
+    tools:context=".SignupScreenActivity"
+    tools:ignore="HardcodedText">
+
+    <ProgressBar
+        android:id="@+id/progressBarSignupScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_margin="24dp"
         android:layout_marginTop="24dp"
         android:orientation="vertical"
-        tools:ignore="UselessParent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/headingContainer"
@@ -31,13 +43,14 @@
                 android:text="Hello"
                 android:textColor="@color/bluePrimary"
                 android:textSize="40sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/poppins"
                 android:text="Signup to get Started"
-                android:layout_marginBottom="20dp"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -45,20 +58,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/usernameHintSignupScreen"
+                android:id="@+id/emailHintSignupScreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username*"
+                android:text="Email*"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
+
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailInputSignupScreen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxBackgroundMode="none">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/usernameInputSignupScreen"
+                    <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:autofillHints="name"
@@ -76,21 +91,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/passHintSignupScreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Password*"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
+
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passInputSignupScreen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxBackgroundMode="none"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passInputSignupScreen"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:autofillHints="password"
@@ -105,12 +122,12 @@
             android:id="@+id/rememberMeCheckboxSignupScreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/bluePrimary"
             android:layout_marginTop="16dp"
+            android:buttonTint="@color/bluePrimary"
             android:fontFamily="@font/poppins"
             android:text="Remember Me"
             android:textColor="?android:textColorPrimary"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/signupButtonSignupScreen"
@@ -121,7 +138,8 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Signup"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -131,42 +149,48 @@
             android:fontFamily="@font/poppins"
             android:text="or continue with"
             android:textColor="?android:textColorPrimary"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="fill"
             android:orientation="horizontal"
             android:weightSum="2">
+
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_weight="1"
                 android:text="Facebook"
-                android:textColor="@color/button_text"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textColor="@color/button_text" />
+
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_weight="1"
                 android:text="Google"
-                android:textColor="@color/button_text"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textColor="@color/button_text" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="Already have an account ? "
                 android:textColor="?android:textColorPrimary"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/loginLinkSignupScreen"
                 android:layout_width="wrap_content"
@@ -174,13 +198,12 @@
                 android:fontFamily="@font/poppins"
                 android:text="Login"
                 android:textColor="@color/bluePrimary"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

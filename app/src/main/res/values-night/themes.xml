@@ -18,5 +18,6 @@
         <item name="android:textColor">?android:textColorPrimaryNoDisable</item>
     </style>
 
+    <style name="BottomMenuStyle" parent="Theme.AppCompat.DayNight.DarkActionBar"/>
 
 </resources>
