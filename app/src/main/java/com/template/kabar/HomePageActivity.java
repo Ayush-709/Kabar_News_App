@@ -3,7 +3,6 @@ package com.template.kabar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomePageActivity extends AppCompatActivity {
