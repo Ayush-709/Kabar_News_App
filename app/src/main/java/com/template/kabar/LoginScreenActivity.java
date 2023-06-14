@@ -17,10 +17,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 import com.template.kabar.ForgotPass.ForgotPasswordActivity;
 import com.template.kabar.SupportFiles.ReusableCodeForAll;
 
@@ -35,14 +33,31 @@ public class LoginScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent intent = new Intent(LoginScreenActivity.this, HomePageActivity.class);
+            startActivity(intent);
+            finish(); // Finish the LoginScreenActivity to prevent going back
+            return; // Return to prevent executing the remaining code
+        }
+
         setContentView(R.layout.activity_login_screen);
         setTextColor();
+
+        View rootView = findViewById(android.R.id.content);
+        rootView.setOnClickListener(v -> {
+            // Hide the keyboard
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        });
 
         signUpLink = findViewById(R.id.signUpLinkLoginScreen);
         forgotPassLink = findViewById(R.id.forgotPasswordLoginScreen);
         loginButton = findViewById(R.id.loginButtonLoginScreen);
         emailInput = findViewById(R.id.emailInputLoginScreen);
         passwordInput = findViewById(R.id.passInputLoginScreen);
+
+
         ProgressBar progressBar = findViewById(R.id.progressBarLoginScreen);
         progressBar.bringToFront();
 

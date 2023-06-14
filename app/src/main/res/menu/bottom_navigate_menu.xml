@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
     <item
         android:id="@+id/homePage"
         android:title="Home"
-        android:icon="@drawable/filled_home_ic"/>
+        android:icon="@drawable/filled_home_ic" />
     <item
         android:id="@+id/explorePage"
         android:title="Explore"
-        android:icon="@drawable/filled_explore_24"/>
+        android:icon="@drawable/filled_bookmark_ic"/>
     <item
         android:id="@+id/bookmarkPage"
         android:title="Bookmark"

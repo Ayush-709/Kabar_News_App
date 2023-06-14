@@ -1,13 +1,16 @@
 package com.template.kabar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,8 +18,12 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.template.kabar.FetchUserDetail.GetUserDetailActivity;
 import com.template.kabar.SupportFiles.ReusableCodeForAll;
 
 import java.util.HashMap;
@@ -36,6 +43,15 @@ public class SignupScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
 
+        View rootView = findViewById(android.R.id.content);
+
+// Set up the click listener for the root layout
+        rootView.setOnClickListener(v -> {
+            // Hide the keyboard
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        });
+
         loginLink = findViewById(R.id.loginLinkSignupScreen);
         bar = findViewById(R.id.progressBarSignupScreen);
         bar.bringToFront();
@@ -54,6 +70,10 @@ public class SignupScreenActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.signupButtonSignupScreen);
 
         signupButton.setOnClickListener(v->{
+            //hide keyboard
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(signupButton.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
             email = Objects.requireNonNull(emailInput.getEditText()).getText().toString();
             pass= Objects.requireNonNull(passwordInput.getEditText()).getText().toString();
 
@@ -78,9 +98,14 @@ public class SignupScreenActivity extends AppCompatActivity {
                                     dialog.dismiss();
                                     bar.setVisibility(View.GONE);
                                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                                    Intent intent = new Intent(SignupScreenActivity.this, HomePageActivity.class);
-                                    startActivity(intent);
-                                    finishAffinity();
+                                    if(checkUserDetailExists()){
+                                        Intent intent = new Intent(SignupScreenActivity.this, HomePageActivity.class);
+                                        startActivity(intent);
+                                        finishAffinity();
+                                    }else{
+                                        Intent intent = new Intent(SignupScreenActivity.this, GetUserDetailActivity.class);
+                                        startActivity(intent);
+                                    }
                                 });
 
                                 AlertDialog alert = builder.create();
@@ -99,6 +124,28 @@ public class SignupScreenActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private boolean checkUserDetailExists() {
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        String uuid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        final boolean[] result = {false};
+        DatabaseReference ref = db.getReference("Users").child(uuid);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    result[0] = snapshot.child("userName").exists();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return result[0];
     }
 
     private boolean checkForErrors() {
