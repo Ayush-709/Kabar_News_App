@@ -1,19 +1,18 @@
 package com.template.kabar;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.template.kabar.InfoWindow.FirstInfoFragment;
 import com.template.kabar.InfoWindow.SecondInfoFragment;
@@ -31,10 +30,9 @@ public class EntryInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_info);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//        View decorView = getWindow().getDecorView();
+//        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         backButton = findViewById(R.id.infoWindowBackButton);
         nextButton = findViewById(R.id.infoWindowNextButton);
@@ -43,11 +41,13 @@ public class EntryInfoActivity extends AppCompatActivity {
         flow3 = findViewById(R.id.fragmentFlow3);
         frameLayout = findViewById(R.id.infoWindowFrame);
         manager = getSupportFragmentManager();
+        backButton.setVisibility(View.GONE);
         manager.beginTransaction().replace(R.id.infoWindowFrame, new FirstInfoFragment()).commit();
         nextButton.setOnClickListener(v->{
             if(acitve==1){
                 replaceFragment(new SecondInfoFragment());
                 flow1.setImageDrawable(getResources().getDrawable(R.drawable.fragment_flow_dots, getTheme()));
+                backButton.setVisibility(View.VISIBLE);
                 flow2.setImageDrawable(getResources().getDrawable(R.drawable.active_fragment_flow, getTheme()));
                 acitve++;
             } else if (acitve==2) {
@@ -70,6 +70,7 @@ public class EntryInfoActivity extends AppCompatActivity {
                 nextButton.setText("Next");
             } else if (acitve==2) {
                 replaceFragment(new FirstInfoFragment());
+                backButton.setVisibility(View.GONE);
                 flow2.setImageDrawable(getResources().getDrawable(R.drawable.fragment_flow_dots, getTheme()));
                 flow1.setImageDrawable(getResources().getDrawable(R.drawable.active_fragment_flow, getTheme()));
                 acitve--;

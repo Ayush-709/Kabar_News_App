@@ -1,8 +1,8 @@
 package com.template.kabar.FetchUserDetail;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.template.kabar.R;
 

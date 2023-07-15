@@ -1,7 +1,5 @@
 package com.template.kabar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,9 +15,12 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.template.kabar.ForgotPass.ForgotPasswordActivity;
+import com.template.kabar.HomeScreenFiles.HomePageActivity;
 import com.template.kabar.SupportFiles.ReusableCodeForAll;
 
 import java.util.Objects;
