@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePageActivity">
+    tools:context=".HomeScreenFiles.HomePageActivity">
 
     <FrameLayout
         android:id="@+id/homePageFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingHorizontal="15dp"
+        android:paddingTop="15dp"
         app:layout_constraintBottom_toTopOf="@id/homePageBottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,11 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:colorPrimary"
-        app:itemTextColor="@color/bottom_nav_colors"
         app:itemIconTint="@color/bottom_nav_colors"
+        app:itemTextColor="@color/bottom_nav_colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigate_menu" />
 

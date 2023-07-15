@@ -15,7 +15,7 @@
             android:name=".FetchUserDetail.GetUserDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".HomePageActivity"
+            android:name=".HomeScreenFiles.HomePageActivity"
             android:exported="false" />
         <activity
             android:name=".GetOtpActivity"

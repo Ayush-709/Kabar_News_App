@@ -1,7 +1,6 @@
 package com.template.kabar.SupportFiles;
 
 import android.content.Context;
-import android.content.DialogInterface;
 
 import androidx.appcompat.app.AlertDialog;
 
