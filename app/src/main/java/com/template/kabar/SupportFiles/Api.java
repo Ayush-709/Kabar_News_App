@@ -14,7 +14,6 @@ public interface Api {
             @Query("from") String fromDate,
             @Query("sortBy") String sortBy,
             @Query("pageSize") int pageSize,
-            @Query("apiKey") String apiKey,
-            @Query("language") String lang
+            @Query("apiKey") String apiKey
     );
 }

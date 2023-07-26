@@ -10,7 +10,7 @@
     <item
         android:id="@+id/explorePage"
         android:title="Explore"
-        android:icon="@drawable/filled_bookmark_ic"/>
+        android:icon="@drawable/filled_explore_ic"/>
     <item
         android:id="@+id/bookmarkPage"
         android:title="Bookmark"
