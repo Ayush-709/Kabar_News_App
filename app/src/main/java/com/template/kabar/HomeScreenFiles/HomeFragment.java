@@ -2,6 +2,8 @@ package com.template.kabar.HomeScreenFiles;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.template.kabar.R;
@@ -64,12 +66,12 @@ public class HomeFragment extends Fragment implements DataLoadListener {
         String sortBy = "popularity";
         int pageSize = 100;
         String apiKey = Api.API_KEY;
-        String lang = "en";
 
-        Call<NewsItemsModel> call = myApi.getAllTopHeadlines(query, fromDate, sortBy, pageSize, apiKey, lang);
+        Call<NewsItemsModel> call = myApi.getAllTopHeadlines(query, fromDate, sortBy, pageSize, apiKey);
+        Log.d("checking get request", call.request().toString());
 
 // Now you can enqueue the API call to get the response asynchronously
-         call.enqueue(new Callback<NewsItemsModel>() {
+         call.enqueue(new Callback<>() {
              @Override
              public void onResponse(@NonNull Call<NewsItemsModel> call, @NonNull Response<NewsItemsModel> response) {
                  // Handle the response here
@@ -128,10 +130,10 @@ class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapter.HomeF
 
     @Override
     public void onBindViewHolder(@NonNull HomeFragmentViewHolder holder, int position) {
-        String titleText = list.get(position).getTitle();
-        String name = Objects.requireNonNull(list.get(position).getSource().get("name")).toString();
-        String imageUrl = list.get(position).getUrlToImage();
-        Date publishDateText = list.get(position).getPublishedAt();
+        String titleText = list.get(holder.getAdapterPosition()).getTitle();
+        String name = Objects.requireNonNull(list.get(holder.getAdapterPosition()).getSource().get("name")).toString();
+        String imageUrl = list.get(holder.getAdapterPosition()).getUrlToImage();
+        Date publishDateText = list.get(holder.getAdapterPosition()).getPublishedAt();
 
         //setting title and name
         holder.title.setText(titleText);
@@ -147,10 +149,48 @@ class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapter.HomeF
                 .load(imageUrl)
                 .placeholder(R.drawable.placeholder_image)
                 .error(R.drawable.error_icon)
-                .override(120, 120)
-                .fitCenter()
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.image);
+
+
+        holder.cardView.setOnClickListener(view -> {
+            SharedPreferences sharedPreferences = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("title", titleText);
+            editor.putString("name", name);
+            editor.putString("imageUrl", imageUrl);
+            editor.putString("date", dateAndTime);
+            editor.putString("content", list.get(position).getContent());
+            editor.putString("author", list.get(position).getAuthor());
+            editor.apply();
+
+            Intent intent = new Intent(context, HomeScreenNewsItemActivity.class);
+            context.startActivity(intent);
+        });
+
+        int bookmarkDrawableId = (int) holder.bookmark.getTag();
+        holder.bookmark.setImageResource(bookmarkDrawableId);
+
+//         Set the click listener on the bookmark ImageView
+        holder.bookmark.setOnClickListener(view -> {
+            // Get the current bookmark drawable resource ID from the ImageView's tag
+            int currentBookmarkDrawableId = (int) holder.bookmark.getTag();
+
+            // Toggle the bookmark image based on the current resource ID
+            int newBookmarkDrawableId;
+            if (currentBookmarkDrawableId == R.drawable.bookmark_outline) {
+                newBookmarkDrawableId = R.drawable.bookmark_filled;
+            } else {
+                newBookmarkDrawableId = R.drawable.bookmark_outline;
+            }
+
+            // Update the bookmark image and set the new drawable resource ID as the tag
+            holder.bookmark.setImageResource(newBookmarkDrawableId);
+            holder.bookmark.setTag(newBookmarkDrawableId);
+
+            // ... Handle bookmark click actions here if needed ...
+        });
     }
 
     @Override
@@ -159,8 +199,9 @@ class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapter.HomeF
     }
 
     public static class HomeFragmentViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+        ImageView image, bookmark;
         TextView  title, publishDate,name;
+        ConstraintLayout cardView;
 
         public HomeFragmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -168,6 +209,11 @@ class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapter.HomeF
             title = itemView.findViewById(R.id.newsItemCardTitle);
             publishDate = itemView.findViewById(R.id.newsItemCardPublishedDateTime);
             name = itemView.findViewById(R.id.newsItemCardName);
+            cardView = itemView.findViewById(R.id.newItemCardView);
+            bookmark = itemView.findViewById(R.id.bookmark_image);
+
+            bookmark.setImageResource(R.drawable.bookmark_outline);
+            bookmark.setTag(R.drawable.bookmark_outline);
         }
     }
 }
